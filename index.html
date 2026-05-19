@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMR-Nexus One Health - Live MVP Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .leaflet-container { background: #0f172a !important; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+
+    <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="bg-emerald-600 text-white p-2.5 rounded-lg font-bold tracking-wider text-xl">
+                <i class="fa-solid fa-circle-nodes"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-white tracking-wide">AMR-Nexus One Health</h1>
+                [span_0](start_span)<p class="text-xs text-slate-400">LumiereCore CLG • AI Early Warning & Stewardship[span_0](end_span)</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-4 mt-4 sm:mt-0 bg-slate-900 p-2 rounded-xl border border-slate-800">
+            <div class="text-xs px-2.5 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded font-medium">
+                [span_1](start_span)<i class="fa-solid fa-flask mr-1"></i> High-Fidelity Synthetic Data Simulation[span_1](end_span)
+            </div>
+            <div class="h-4 w-px bg-slate-800"></div>
+            <div class="flex space-x-1">
+                <button id="btnRoleNational" onclick="switchRole('National')" class="text-xs px-3 py-1.5 rounded font-medium transition bg-emerald-600 text-white">
+                    <i class="fa-solid fa-building-shield mr-1"></i> National Policy
+                </button>
+                <button id="btnRoleCounty" onclick="switchRole('County')" class="text-xs px-3 py-1.5 rounded font-medium transition text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-stethoscope mr-1"></i> County Frontline
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 grid grid-cols-1 xl:grid-cols-4 gap-6 p-6">
+        
+        <div class="space-y-6 xl:col-span-1">
+            
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 shadow-md">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
+                    [span_2](start_span)<i class="fa-solid fa-circle-exclamation mr-1.5"></i> The Systemic Gaps We Solve[span_2](end_span)
+                </h2>
+                <div class="space-y-3 text-xs text-slate-300">
+                    <div class="p-2.5 bg-slate-900/50 rounded-lg border border-slate-800">
+                        <strong class="text-white block"><i class="fa-solid fa-link-slash text-rose-400 mr-1"></i> Data Fragmentation</strong>
+                        [span_3](start_span)Human, animal, and environmental data are completely siloed[span_3](end_span).
+                    </div>
+                    <div class="p-2.5 bg-slate-900/50 rounded-lg border border-slate-800">
+                        <strong class="text-white block"><i class="fa-solid fa-eye-slash text-amber-400 mr-1"></i> Surveillance Blindspots</strong>
+                        [span_4](start_span)Agro-vets and community pharmacies run outside standard systems[span_4](end_span).
+                    </div>
+                    <div class="p-2.5 bg-slate-900/50 rounded-lg border border-slate-800">
+                        <strong class="text-white block"><i class="fa-solid fa-bolt-lightning text-yellow-400 mr-1"></i> Data-to-Decision Lag</strong>
+                        [span_5](start_span)Subnational units have no tool to translate signals into clinical action[span_5](end_span).
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 shadow-md">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
+                    <i class="fa-solid fa-map-location-dot mr-1.5"></i> Regional Anomaly Controller
+                </h2>
+                <p class="text-xs text-slate-400 mb-4">Click a location to switch the active AI pipeline and track real-time hotspot simulation data:</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="locNairobi" onclick="selectLocation('Nairobi')" class="p-3 rounded-xl border text-left font-medium transition bg-slate-900 border-emerald-500 text-white shadow-lg">
+                        <span class="block text-xs uppercase tracking-wider text-slate-400">County</span>
+                        <span class="text-sm font-bold">Nairobi East</span>
+                        <span class="block text-[10px] text-rose-400 mt-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> High Carbapenem</span>
+                    </button>
+                    <button id="locNakuru" onclick="selectLocation('Nakuru')" class="p-3 rounded-xl border text-left font-medium transition bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 hover:bg-slate-900/50">
+                        <span class="block text-xs uppercase tracking-wider text-slate-400">County</span>
+                        <span class="text-sm font-bold">Nakuru West</span>
+                        <span class="block text-[10px] text-amber-400 mt-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Fluoroquinolone</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 shadow-md text-xs">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
+                    [span_6](start_span)<i class="fa-solid fa-database mr-1.5"></i> Component A: Data Backbone[span_6](end_span)
+                </h2>
+                <div class="grid grid-cols-2 gap-2 text-center mb-3">
+                    <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[10px] uppercase">Isolate Records</span>
+                        <span class="text-base font-bold text-white font-mono">&ge;500</span>
+                    </div>
+                    <div class="bg-slate-900 p-2 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[10px] uppercase">Active Sectors</span>
+                        [span_7](start_span)<span class="text-base font-bold text-emerald-400 font-mono">One Health[span_7](end_span)</span>
+                    </div>
+                </div>
+                <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800 font-mono text-[11px] text-slate-400 space-y-1">
+                    <span class="text-emerald-500 block text-[10px] uppercase font-sans font-bold">Live API Schema Status:</span>
+                    [span_8](start_span)<div>[ENGINE] Python FastAPI Backend[span_8](end_span)</div>
+                    [span_9](start_span)<div>[SCHEMA] GLASS Standard Config[span_9](end_span)</div>
+                    [span_10](start_span)[span_11](start_span)<div>[FEED] Synthetic Demo Mode[span_10](end_span)[span_11](end_span)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6 xl:col-span-2 flex flex-col">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 shadow-md flex flex-col h-[320px]">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                        [span_12](start_span)<i class="fa-solid fa-earth-africa text-emerald-400 mr-1.5"></i> Geographic Surveillance Heatmap[span_12](end_span)
+                    </h3>
+                    <div id="map" class="w-full flex-1 rounded-xl bg-slate-900 border border-slate-800 z-10"></div>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 shadow-md flex flex-col h-[320px]">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                        [span_13](start_span)<i class="fa-solid fa-chart-line text-emerald-400 mr-1.5"></i> AI Forecasting (Prophet Matrix)[span_13](end_span)
+                    </h3>
+                    <div class="flex-1 relative">
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 shadow-md flex-1">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+                        [span_14](start_span)<i class="fa-solid fa-brain mr-1.5"></i> Component B: AI Early Warning Engine[span_14](end_span)
+                    </h3>
+                    <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded text-[10px] font-bold font-mono tracking-wider uppercase">
+                        Anomaly Level: High
+                    </span>
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-xl border-l-4 border-rose-500 mb-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-slate-400 block tracking-wider">Trigger Notification</span>
+                            <p id="alertTitle" class="text-sm font-bold text-white mt-0.5"></p>
+                        </div>
+                        <span class="text-[10px] font-mono bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">
+                            [span_15](start_span)XGBoost / Isolation Scoring[span_15](end_span)
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                        [span_16](start_span)<i class="fa-solid fa-chart-simple mr-1.5 text-indigo-400"></i> SHAP Explainability Summaries[span_16](end_span)
+                    </h4>
+                    <p id="shapSummary" class="text-xs text-slate-300 leading-relaxed mb-3 italic bg-slate-950 p-3 rounded-lg border border-slate-850"></p>
+                    
+                    <div class="space-y-2 text-[11px]">
+                        <div>
+                            <div class="flex justify-between text-slate-400 mb-1">
+                                <span>Antibiotic Usage Spike Factor</span>
+                                <span id="weightConsumption" class="font-mono text-emerald-400 font-bold"></span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                                <div id="barConsumption" class="bg-emerald-500 h-full rounded-full transition-all duration-500"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-slate-400 mb-1">
+                                <span>One Health Cross-Sector Mapping Factor</span>
+                                <span id="weightSectors" class="font-mono text-emerald-400 font-bold"></span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
+                                <div id="barSectors" class="bg-emerald-400 h-full rounded-full transition-all duration-500"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6 xl:col-span-1">
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 shadow-md h-full flex flex-col">
+                <div class="border-b border-slate-800 pb-3 mb-4 flex justify-between items-center">
+                    <h2 class="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+                        [span_17](start_span)<i class="fa-solid fa-user-doctor mr-1.5"></i> Component C: Adaptive Guidance[span_17](end_span)
+                    </h2>
+                </div>
+
+                <div class="mb-4 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 p-3 rounded-xl flex items-center justify-between">
+                    <div class="text-xs">
+                        <span class="block text-[10px] text-slate-400 uppercase font-sans">Active Role Target Identity</span>
+                        <strong id="activeRoleBadge" class="text-white"></strong>
+                    </div>
+                    <i class="fa-solid fa-id-card-clip text-lg"></i>
+                </div>
+
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                    [span_18](start_span)This component converts machine analytics into custom role-specific action tracks[span_18](end_span):
+                </p>
+
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 flex-1 space-y-4">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider block">
+                            [span_19](start_span)<i class="fa-solid fa-microchip text-indigo-400 mr-1"></i> Custom Dynamic Guidelines[span_19](end_span)
+                        </span>
+                        <div id="guidanceText" class="text-xs text-slate-200 mt-2 leading-relaxed space-y-2"></div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-400">
+                        [span_20](start_span)<span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> Kenya Action Plan Aligned[span_20](end_span)</span>
+                        [span_21](start_span)<span class="bg-slate-800 px-1.5 py-0.5 rounded font-mono font-bold text-white">WHO AWaRe[span_21](end_span)</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-slate-900 border border-slate-800 p-3 rounded-xl">
+                    <span class="text-[10px] font-bold uppercase text-slate-400 block tracking-wider mb-1.5">
+                        [span_22](start_span)<i class="fa-solid fa-mobile-screen text-amber-400 mr-1"></i> Simulated SMS Gateway Trigger[span_22](end_span)
+                    </span>
+                    <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-850 font-mono text-[11px] text-amber-200">
+                        [span_23](start_span)<span class="text-slate-500 text-[10px] block border-b border-slate-850 pb-1 mb-1 font-sans">Africa's Talking Sandbox Payload:[span_23](end_span)</span>
+                        <span id="smsPayload"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800 px-6 py-3 text-center text-xs text-slate-500">
+        AMR-Nexus One Health Protocol System Architecture Demo • Revised Blueprint Concept
+    </footer>
+
+    <script>
+        // High-fidelity profile dataset mapping regional scenarios to distinct roles
+        const amrDatabase = {
+            Nairobi: {
+                lat: -1.2921, lng: 36.8219,
+                [span_24](start_span)[span_25](start_span)alertTitle: "Carbapenem-resistant K. pneumoniae Outbreak Vector Detected[span_24](end_span)[span_25](end_span)",
+                [span_26](start_span)[span_27](start_span)shapSummary: "This alert was triggered by a 34% rise in carbapenem-resistant K. pneumoniae in Nairobi East facilities over 6 weeks, with concurrent high carbapenem prescription volumes.[span_26](end_span)[span_27](end_span)",
+                weightConsumption: "High Impact (+42%)", barConsumption: 88,
+                weightSectors: "Baseline Match (+18%)", barSectors: 38,
+                smsPayload: "AMR-ALERT [Nairobi East]: 34% Spike in CRKP detected. [span_28](start_span)[span_29](start_span)Opening policy trigger response tools.[span_28](end_span)[span_29](end_span)",
+                chartData: [12, 14, 15, 18, 22, 29, 34, 38, 45, 51, 58, 64],
+                guidance: {
+                    National: `
+                        [span_30](start_span)<p class="font-bold text-white text-sm mb-1">🚨 POLICY DIRECTIVE[span_30](end_span):</p>
+                        [span_31](start_span)<p class="mb-2">- Logs in and reviews the national heatmap displaying emerging anomalies[span_31](end_span).</p>
+                        [span_32](start_span)[span_33](start_span)<p class="mb-2">- Initiates policy trigger recommendations and executes resource reallocation strategies[span_32](end_span)[span_33](end_span).</p>
+                        [span_34](start_span)<p class="text-amber-400 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Flagging system guidelines for review[span_34](end_span).</p>
+                    `,
+                    County: `
+                        [span_35](start_span)<p class="font-bold text-white text-sm mb-1">🏥 CLINICAL PROTOCOL[span_35](end_span):</p>
+                        [span_36](start_span)<p class="mb-2"><strong>Target Pathogen:</strong> Klebsiella pneumoniae (Carbapenem Resistant)[span_36](end_span)</p>
+                        [span_37](start_span)<p class="mb-2"><strong>Empiric Guidance:</strong> Deploy updated empiric treatment frameworks immediately[span_37](end_span).</p>
+                        [span_38](start_span)<p class="mb-2"><strong>Action Track:</strong> Open direct links to relevant sub-county clinical SOP algorithms[span_38](end_span).</p>
+                    `
+                }
+            },
+            Nakuru: {
+                lat: -0.3031, lng: 36.0800,
+                [span_39](start_span)alertTitle: "Fluoroquinolone Resistance Escalation Flagged in Poultry Isolates[span_39](end_span)",
+                [span_40](start_span)shapSummary: "This alert was triggered by a high-density trend curve showing fluoroquinolone resistance shifts across local poultry isolates within specified testing parameters[span_40](end_span).",
+                weightConsumption: "Critical Load (+58%)", barConsumption: 94,
+                weightSectors: "High Animal-Link (+52%)", barSectors: 82,
+                [span_41](start_span)smsPayload: "AMR-ALERT [Sub-County]: Automated stewardship alert triggered for high fluoroquinolone resistance in poultry isolates.[span_41](end_span)",
+                chartData: [8, 12, 11, 14, 16, 21, 23, 27, 31, 35, 38, 44],
+                guidance: {
+                    National: `
+                        [span_42](start_span)<p class="font-bold text-white text-sm mb-1">🚨 NATIONAL STEWARDSHIP MONITORING[span_42](end_span):</p>
+                        [span_43](start_span)<p class="mb-2">- Monitor subnational cross-sector animal-to-human colocation mapping streams[span_43](end_span).</p>
+                        [span_44](start_span)<p class="mb-2">- Execute policy directives regarding agricultural prescription distribution bounds[span_44](end_span).</p>
+                    `,
+                    County: `
+                        [span_45](start_span)<p class="font-bold text-white text-sm mb-1">🐓 VETERINARY STEWARDSHIP PROTOCOL[span_45](end_span):</p>
+                        [span_46](start_span)<p class="mb-2"><strong>Sector Anomaly:</strong> Fluoroquinolone resistance tracking in poultry isolates[span_46](end_span).</p>
+                        [span_47](start_span)[span_48](start_span)<p class="mb-2"><strong>Prescribing Mandate:</strong> Pivot immediately to updated empiric poultry treatment frameworks[span_47](end_span)[span_48](end_span).</p>
+                        [span_49](start_span)<p class="mb-2"><strong>SOP Link:</strong> Review direct link to Kenya VMD SOP templates and complete the generated action checklist[span_49](end_span).</p>
+                    `
+                }
+            }
+        };
+
+        // UI State Variables
+        let currentLoc = 'Nairobi';
+        let currentRole = 'National';
+        let map, marker, forecastChart;
+
+        // Leaflet Engine Ignition
+        function initMap() {
+            map = L.map('map', {
+                center: [amrDatabase[currentLoc].lat, amrDatabase[currentLoc].lng],
+                zoom: 10,
+                zoomControl: false
+            });
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+            }).addTo(map);
+
+            marker = L.circle([amrDatabase[currentLoc].lat, amrDatabase[currentLoc].lng], {
+                color: '#ef4444',
+                fillColor: '#ef4444',
+                fillOpacity: 0.35,
+                radius: 3500
+            }).addTo(map);
+        }
+
+        // Chart Engine Ignition
+        function initChart() {
+            const ctx = document.getElementById('forecastChart').getContext('2d');
+            forecastChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'],
+                    datasets: [{
+                        label: 'Resistance Rate Trend (%)',
+                        data: amrDatabase[currentLoc].chartData,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                        borderWidth: 2,
+                        tension: 0.25,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { size: 10 } } },
+                        x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        // Render Pipe Sync Routine
+        function updateUI() {
+            const data = amrDatabase[currentLoc];
+            
+            document.getElementById('alertTitle').innerText = data.alertTitle;
+            document.getElementById('shapSummary').innerText = data.shapSummary;
+            document.getElementById('smsPayload').innerText = data.smsPayload;
+            document.getElementById('activeRoleBadge').innerText = currentRole === 'National' ? [span_50](start_span)'National Coordinator View[span_50](end_span)[span_51](start_span)' : 'County Clinician / Veterinarian View[span_51](end_span)';
+            
+            document.getElementById('guidanceText').innerHTML = data.guidance[currentRole];
+
+            document.getElementById('weightConsumption').innerText = data.weightConsumption;
+            document.getElementById('barConsumption').style.width = data.barConsumption + '%';
+            document.getElementById('weightSectors').innerText = data.weightSectors;
+            document.getElementById('barSectors').style.width = data.barSectors + '%';
+
+            if (forecastChart) {
+                forecastChart.data.datasets[0].data = data.chartData;
+                forecastChart.data.datasets[0].borderColor = currentLoc === 'Nairobi' ? '#ef4444' : '#f59e0b';
+                forecastChart.update();
+            }
+
+            if (map) {
+                map.setView([data.lat, data.lng], 10, { animate: true, duration: 1 });
+                marker.setLatLng([data.lat, data.lng]);
+                marker.setStyle({
+                    color: currentLoc === 'Nairobi' ? '#ef4444' : '#f59e0b',
+                    fillColor: currentLoc === 'Nairobi' ? '#ef4444' : '#f59e0b'
+                });
+            }
+        }
+
+        // Interface Controllers
+        function selectLocation(loc) {
+            currentLoc = loc;
+            ['Nairobi', 'Nakuru'].forEach(l => {
+                const btn = document.getElementById('loc' + l);
+                if(l === loc) {
+                    btn.className = "p-3 rounded-xl border text-left font-medium transition bg-slate-900 border-" + (l==='Nairobi'?'rose':'amber') + "-500 text-white shadow-lg";
+                } else {
+                    btn.className = "p-3 rounded-xl border text-left font-medium transition bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 hover:bg-slate-900/50";
+                }
+            });
+            updateUI();
+        }
+
+        function switchRole(role) {
+            currentRole = role;
+            const btnNational = document.getElementById('btnRoleNational');
+            const btnCounty = document.getElementById('btnRoleCounty');
+            
+            if (role === 'National') {
+                btnNational.className = "text-xs px-3 py-1.5 rounded font-medium transition bg-emerald-600 text-white";
+                btnCounty.className = "text-xs px-3 py-1.5 rounded font-medium transition text-slate-400 hover:text-white";
+            } else {
+                btnNational.className = "text-xs px-3 py-1.5 rounded font-medium transition text-slate-400 hover:text-white";
+                btnCounty.className = "text-xs px-3 py-1.5 rounded font-medium transition bg-emerald-600 text-white";
+            }
+            updateUI();
+        }
+
+        window.onload = () => {
+            initMap();
+            initChart();
+            updateUI();
+        };
+    </script>
+</body>
+</html>
