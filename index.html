@@ -135,7 +135,7 @@
     @keyframes blink { 50% { opacity: 0; } }
   </style>
 </head>
-<body class="h-screen flex flex-col overflow-hidden text-slate-200 text-sm">
+<body class="xl:h-screen min-h-screen flex flex-col xl:overflow-hidden text-slate-200 text-sm">
 
   <header class="panel-card m-4 px-6 py-3 flex flex-col md:flex-row justify-between items-center z-20 shrink-0">
     <div class="flex items-center space-x-4">
@@ -178,7 +178,7 @@
     </div>
   </header>
 
-  <main class="flex-1 flex flex-col xl:flex-row overflow-hidden relative px-4 pb-4 gap-4">
+  <main class="flex-1 flex flex-col xl:flex-row overflow-y-auto xl:overflow-hidden relative px-4 pb-4 gap-4">
     
     <aside class="w-full xl:w-72 panel-card flex flex-col shrink-0 overflow-hidden z-10">
       <div class="p-4 border-b border-emerald-500/20 shrink-0">
@@ -237,7 +237,7 @@
 
     <section class="flex-1 flex flex-col min-w-0 gap-4 overflow-hidden relative">
       <div class="flex flex-col xl:flex-row gap-4 h-auto xl:h-[300px] shrink-0">
-        <div class="panel-card flex-1 relative overflow-hidden shadow-2xl">
+        <div class="panel-card flex-1 min-h-[250px] xl:min-h-0 relative overflow-hidden shadow-2xl">
           <div class="absolute top-3 left-3 z-[400] bg-black/60 backdrop-blur-sm border border-emerald-500/30 px-3 py-1.5 rounded-lg pointer-events-none">
             <span class="text-[9px] uppercase tracking-widest text-emerald-400 font-bold">Spatial Tracking</span>
           </div>
@@ -286,7 +286,7 @@
         </div>
       </div>
 
-      <div class="panel-card flex-1 p-5 overflow-y-auto custom-scroll relative">
+      <div class="panel-card xl:flex-1 shrink-0 min-h-[300px] p-5 xl:overflow-y-auto custom-scroll relative">
         <div id="view-backbone" class="feature-view">
           <div class="flex items-center justify-between mb-4 fade-in">
             <div class="flex items-center space-x-3">
@@ -439,7 +439,7 @@
     </section>
 
     <!-- RIGHT PANEL -->
-    <aside class="w-full xl:w-[360px] panel-card flex flex-col shrink-0 z-10 overflow-hidden">
+    <aside class="w-full xl:w-[360px] panel-card flex flex-col shrink-0 z-10 xl:overflow-hidden">
       <div class="flex-1 p-5 flex flex-col border-b border-emerald-500/20 bg-black/20">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Contextual Matrix Engine</h2>
