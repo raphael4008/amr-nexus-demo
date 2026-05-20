@@ -182,32 +182,14 @@
     
     <aside class="w-full xl:w-72 panel-card flex flex-col shrink-0 overflow-hidden z-10">
       <div class="p-4 border-b border-emerald-500/20 shrink-0">
-        <h2 class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Feature Control Engine</h2>
+        <h2 class="text-[10px] font-bold uppercase tracking-widest text-slate-500">MVP Workflow Overview</h2>
       </div>
       
       <div class="flex flex-col flex-1 p-2 space-y-1 overflow-y-auto custom-scroll">
         <button class="tab-btn active text-left px-4 py-3 rounded text-sm font-medium text-slate-300" data-target="view-backbone">
           <div class="flex items-center space-x-3">
             <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
-            <span>One Health Backbone</span>
-          </div>
-        </button>
-        <button class="tab-btn text-left px-4 py-3 rounded text-sm font-medium text-slate-300" data-target="view-bioinfo">
-          <div class="flex items-center space-x-3">
-            <svg class="w-4 h-4 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-            <span>Bioinformatics Hub</span>
-          </div>
-        </button>
-        <button class="tab-btn text-left px-4 py-3 rounded text-sm font-medium text-slate-300" data-target="view-market">
-          <div class="flex items-center space-x-3">
-            <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-            <span>Market Intelligence</span>
-          </div>
-        </button>
-        <button class="tab-btn text-left px-4 py-3 rounded text-sm font-medium text-slate-300" data-target="view-ai">
-          <div class="flex items-center space-x-3">
-            <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            <span>AI Modeling Core</span>
+            <span>Data Backbone (MVP)</span>
           </div>
         </button>
       </div>
@@ -331,110 +313,6 @@
           </div>
         </div>
 
-        <div id="view-bioinfo" class="feature-view hidden">
-          <div class="flex items-center space-x-3 mb-4 fade-in">
-            <svg class="w-6 h-6 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-            <div>
-              <h3 class="text-sm font-bold text-white uppercase tracking-widest">The Engine: Bioinformatics Hub</h3>
-              <p class="text-[10px] text-teal-400 font-mono mt-0.5">Automated Resistance Gene Sequence Matching.</p>
-            </div>
-          </div>
-          <div class="bg-black/60 p-4 rounded-xl border border-teal-500/20 font-mono text-[10px] text-slate-300 mt-6 relative overflow-hidden shadow-inner h-40 fade-in-delay-1">
-            <div class="absolute top-0 right-0 p-2 text-teal-500/10 z-0">
-              <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
-            </div>
-            <div id="bioTerminal" class="relative z-10 space-y-1 cursor-blink"></div>
-          </div>
-        </div>
-
-        <div id="view-market" class="feature-view hidden">
-          <div class="flex items-center space-x-3 mb-4 fade-in">
-            <svg class="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-            <div>
-              <h3 class="text-sm font-bold text-white uppercase tracking-widest">The Eyes: Market Intelligence</h3>
-              <p class="text-[10px] text-amber-400 font-mono mt-0.5">Solving Surveillance Blindspots in informal pathways.</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            <div class="p-3 bg-black/40 border border-slate-700 rounded-xl interactive-card flex justify-between items-center cursor-pointer group fade-in-delay-1">
-              <div class="flex items-center space-x-3">
-                <div class="p-2 bg-emerald-500/20 rounded-lg group-hover:bg-emerald-500/40 transition-colors">
-                  <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                </div>
-                <div><h4 class="text-xs font-bold text-white">KoBoToolbox</h4><p class="text-[9px] text-slate-400">Rural Survey</p></div>
-              </div>
-              <div class="text-right">
-                <div class="text-xs font-mono font-bold text-white market-counter" id="koboCounter">1,402</div>
-                <div class="text-[8px] text-emerald-400 uppercase">Entries/hr</div>
-              </div>
-            </div>
-            
-            <div class="p-3 bg-black/40 border border-slate-700 rounded-xl interactive-card flex justify-between items-center cursor-pointer group hover:border-emerald-500/40 fade-in-delay-2">
-              <div class="flex items-center space-x-3">
-                <div class="p-2 bg-emerald-500/20 rounded-lg group-hover:bg-emerald-500/40 transition-colors">
-                  <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-                </div>
-                <div><h4 class="text-xs font-bold text-white">Mobile PWA</h4><p class="text-[9px] text-slate-400">Offline Client</p></div>
-              </div>
-              <div class="text-right">
-                <div class="text-xs font-mono font-bold text-white market-counter" id="pwaCounter">853</div>
-                <div class="text-[8px] text-emerald-400 uppercase">Active Nodes</div>
-              </div>
-            </div>
-            
-            <div class="p-3 bg-black/40 border border-slate-700 rounded-xl interactive-card flex justify-between items-center cursor-pointer group hover:border-emerald-500/40 fade-in-delay-3">
-              <div class="flex items-center space-x-3">
-                <div class="p-2 bg-emerald-500/20 rounded-lg group-hover:bg-emerald-500/40 transition-colors">
-                  <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                </div>
-                <div><h4 class="text-xs font-bold text-white">USSD Gateway</h4><p class="text-[9px] text-slate-400">Low-bandwidth</p></div>
-              </div>
-              <div class="text-right">
-                <div class="text-xs font-mono font-bold text-white market-counter" id="ussdCounter">2,110</div>
-                <div class="text-[8px] text-amber-400 uppercase">Pings/hr</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="view-ai" class="feature-view hidden">
-          <div class="flex items-center space-x-3 mb-4 fade-in">
-            <svg class="w-6 h-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            <div>
-              <h3 class="text-sm font-bold text-white uppercase tracking-widest">The Brain: AI Modeling Core</h3>
-              <p class="text-[10px] text-rose-400 font-mono mt-0.5">Toggle Baseline Data Constraints.</p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 fade-in-delay-1">
-            <div class="p-5 bg-black/40 border border-rose-500/30 rounded-xl interactive-card">
-              <div class="flex justify-between items-center mb-2">
-                <h4 class="text-xs font-bold text-white uppercase tracking-widest">Data Matrix Constraint</h4>
-                <button id="toggleDataMode" class="w-12 h-6 bg-emerald-500 rounded-full relative transition-colors cursor-pointer shadow-inner">
-                  <span id="togglePin" class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform transform translate-x-6 shadow-md"></span>
-                </button>
-              </div>
-              
-              <div class="border-t border-slate-700/50 mt-4 pt-4">
-                <h5 id="dataModeLabel" class="text-sm font-bold text-emerald-400 mb-1">GLASS Clean Dataset</h5>
-                <p id="dataModeDesc" class="text-[10px] text-slate-400 leading-relaxed font-mono">
-                  Simulating a sterile environment with 100% complete records. Observe the fluid trajectory in the Prophet chart above.
-                </p>
-              </div>
-            </div>
-
-            <div class="p-4 bg-black/40 border border-slate-700 rounded-xl interactive-card">
-              <h4 class="text-[10px] uppercase font-bold text-slate-500 tracking-widest mb-3">Live Neural Network Tensors</h4>
-              <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-                <div class="p-2 bg-black/60 rounded border border-slate-800"><span class="text-slate-500">W(1,1):</span> <span id="tensor1" class="text-emerald-400 font-bold ml-1">0.8432</span></div>
-                <div class="p-2 bg-black/60 rounded border border-slate-800"><span class="text-slate-500">W(1,2):</span> <span id="tensor2" class="text-teal-400 font-bold ml-1">0.1194</span></div>
-                <div class="p-2 bg-black/60 rounded border border-slate-800"><span class="text-slate-500">W(2,1):</span> <span id="tensor3" class="text-amber-400 font-bold ml-1">-0.052</span></div>
-                <div class="p-2 bg-black/60 rounded border border-slate-800"><span class="text-slate-500">W(2,2):</span> <span id="tensor4" class="text-rose-400 font-bold ml-1">0.9913</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -490,10 +368,10 @@
     const STATE = { location: 'nairobi', role: 'national', sector: 'human', dataMode: 'clean', activeTab: 'view-backbone', categoryIndex: 0 };
 
     const genGuidance = (sector, role, loc, catName) => {
-      if(role === 'national') {
-        return `<span class="font-bold text-amber-400 text-sm block mb-2 font-mono tracking-widest uppercase">⚠️ Policy Directive</span><ul class="space-y-2 list-disc pl-4 text-slate-300"><li><strong class="text-white">Audit Action:</strong> Initiate strategic interventions for ${loc} targeting <span class="text-emerald-400">${catName}</span>.</li><li><strong class="text-white">Surveillance:</strong> Elevate cross-sector reporting cadence.</li></ul>`;
+      if (role === 'national') {
+        return `\u003cspan class=\"font-bold text-amber-400 text-sm block mb-2 font-mono tracking-widest uppercase\"\u003e⚠️ Policy Directive (AI Early Warning)\u003c/span\u003e\u003cul class=\"space-y-2 list-disc pl-4 text-slate-300\"\u003e\u003cli\u003e\u003cstrong class=\"text-white\"\u003eDetection:\u003c/strong\u003e AI identified AMR risk in ${loc} for ${catName}.\u003c/li\u003e\u003cli\u003e\u003cstrong class=\"text-white\"\u003eRecommended Action:\u003c/strong\u003e Deploy targeted stewardship measures.\u003c/li\u003e\u003c/ul\u003e`;
       } else {
-        return `<span class="font-bold text-amber-400 text-sm block mb-2 font-mono tracking-widest uppercase">🏥 Frontline Protocol</span><div class="mb-2"><strong class="text-white block mb-1">Target Anomaly:</strong> Resistance flagged in <span class="text-emerald-400">${catName}</span> testing pool.</div><div class="mb-2"><strong class="text-white block mb-1">Guidance:</strong> Pivot empiric therapies pending culture results.</div><div class="text-emerald-400 mt-3 pt-2 border-t border-slate-700 font-mono text-[9px] cursor-pointer hover:text-emerald-300 transition-colors">> Access Local Protocol Dashboard</div>`;
+        return `\u003cspan class=\"font-bold text-amber-400 text-sm block mb-2 font-mono tracking-widest uppercase\"\u003e🏥 Frontline Protocol (AI Alert)\u003c/span\u003e\u003cdiv class=\"mb-2\"\u003e\u003cstrong class=\"text-white block mb-1\"\u003eDetected Anomaly:\u003c/strong\u003e AMR risk in ${catName} sector.\u003c/div\u003e\u003cdiv class=\"mb-2\"\u003e\u003cstrong class=\"text-white block mb-1\"\u003eGuidance:\u003c/strong\u003e Apply stewardship protocol; consider alternative therapy.\u003c/div\u003e\u003cdiv class=\"text-emerald-400 mt-3 pt-2 border-t border-slate-700 font-mono text-[9px] cursor-pointer hover:text-emerald-300 transition-colors\"\u003e\u003e Access Local Decision Support\u003c/div\u003e`;
       }
     };
 
@@ -554,11 +432,6 @@
       featureViews: document.querySelectorAll('.feature-view'),
       locationSelect: document.getElementById('locationSelect'),
       
-      toggleDataMode: document.getElementById('toggleDataMode'),
-      togglePin: document.getElementById('togglePin'),
-      dataModeLabel: document.getElementById('dataModeLabel'),
-      dataModeDesc: document.getElementById('dataModeDesc'),
-
       shapBlock: document.getElementById('shapBlock'),
       anomalyTitle: document.getElementById('anomalyTitle'),
       anomalyDesc: document.getElementById('anomalyDesc'),
@@ -576,10 +449,6 @@
       smsOutput: document.getElementById('smsOutput'),
       awareTagLabel: document.getElementById('awareTagLabel'),
 
-      bioTerminal: document.getElementById('bioTerminal'),
-      koboCounter: document.getElementById('koboCounter'),
-      pwaCounter: document.getElementById('pwaCounter'),
-      ussdCounter: document.getElementById('ussdCounter'),
       whonetCount: document.getElementById('whonetCount'),
       dhisCount: document.getElementById('dhisCount')
     };
@@ -616,12 +485,6 @@
 
           dom.featureViews.forEach(v => {
             v.classList.add('hidden');
-            const children = v.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3');
-            children.forEach(c => {
-               c.style.animation = 'none';
-               c.offsetHeight; 
-               c.style.animation = null; 
-            });
           });
           
           const targetEl = document.getElementById(target);
@@ -634,12 +497,6 @@
         STATE.location = e.target.value;
         STATE.categoryIndex = 0;
         renderAll();
-      });
-
-      dom.toggleDataMode.addEventListener('click', () => {
-        STATE.dataMode = STATE.dataMode === 'clean' ? 'dirty' : 'clean';
-        renderDataMode();
-        updateChart();
       });
     }
 
@@ -671,54 +528,12 @@
     function initModuleInteractivity(tabId) {
       activeIntervals.forEach(clearInterval);
       activeIntervals = [];
-
       if (tabId === 'view-backbone') {
         const i1 = setInterval(() => {
           dom.whonetCount.textContent = (4000 + Math.floor(Math.random() * 500)).toLocaleString() + ' req/s';
           dom.dhisCount.textContent = (800 + Math.floor(Math.random() * 100)).toLocaleString() + ' req/s';
         }, 1500);
         activeIntervals.push(i1);
-      } 
-      else if (tabId === 'view-bioinfo') {
-        dom.bioTerminal.innerHTML = '';
-        const lines = [
-          `> INGESTING PIPELINE: ISOLATE_BATCH_${STATE.sector.toUpperCase()}_992`,
-          "> ALIGNING READS: 98.4% COVERAGE",
-          "> MATCHING K-MERS TO DB_RESISTANCE_V4...",
-          "<span class='text-emerald-400'>[OK] TEM-1 (NOMINAL)</span>",
-          "<span class='text-amber-400'>[WARN] mcr-1 DETECTED (PLASMID_MEDIATED)</span>",
-          "<span class='text-rose-500'>[CRITICAL] blaNDM SIGNATURE CONFIRMED</span>",
-          "> AWAITING NEXT BATCH..."
-        ];
-        let i = 0;
-        const i2 = setInterval(() => {
-          if(i < lines.length) {
-            dom.bioTerminal.innerHTML += `<div class="mb-1 opacity-0 fade-in">${lines[i]}</div>`;
-            i++;
-          } else {
-            clearInterval(i2);
-          }
-        }, 800);
-        activeIntervals.push(i2);
-      }
-      else if (tabId === 'view-market') {
-        const i3 = setInterval(() => {
-          dom.koboCounter.textContent = (1400 + Math.floor(Math.random() * 50)).toLocaleString();
-          dom.pwaCounter.textContent = (850 + Math.floor(Math.random() * 20)).toLocaleString();
-          dom.ussdCounter.textContent = (2100 + Math.floor(Math.random() * 100)).toLocaleString();
-        }, 2000);
-        activeIntervals.push(i3);
-      }
-      else if (tabId === 'view-ai') {
-        const updateTensor = (id) => {
-          const val = (Math.random() * 2 - 1).toFixed(4);
-          document.getElementById(id).textContent = val;
-        };
-        const i4 = setInterval(() => {
-          updateTensor('tensor1'); updateTensor('tensor2');
-          updateTensor('tensor3'); updateTensor('tensor4');
-        }, 800);
-        activeIntervals.push(i4);
       }
     }
 
